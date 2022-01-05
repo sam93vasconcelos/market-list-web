@@ -1,0 +1,30 @@
+<div class="login-container">
+  <h1>Login</h1>
+
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>E-mail</mat-label>
+    <input
+      matInput
+      [errorStateMatcher]="matcher"
+      [formControl]="emailFormControl"
+    />
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Preencha o e-mail
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Senha</mat-label>
+    <input #password type="password" matInput />
+    <mat-error *ngIf="passwordFormControl.hasError('required')">
+      Preencha o e-mail
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary">Entrar</button>
+
+  <p class="register mt-2">
+    Não tem uma conta? Cadastre grátis clicando <a href="#">aqui!</a>
+  </p>
+  <p class="forget-password">
+    Esqueceu sua senha? Clique <a href="#">aqui</a> para alterar
+  </p>
+</div>
