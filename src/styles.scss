@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #ddd;
+}
+
+.container {
+  width: 1040px;
+  max-width: 90%;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  background: #ccc;
+  height: 100%;
+  box-shadow: 0 0 5px #555;
+  padding: 10px 20px;
+}
+
+input,
+select,
+.full-width {
+  width: 100%;
+}
