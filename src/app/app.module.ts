@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthGuardService } from './auth-guard-service.service';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent],
@@ -21,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

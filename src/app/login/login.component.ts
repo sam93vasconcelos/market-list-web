@@ -1,26 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
+  FormGroup,
   FormGroupDirective,
   NgForm,
   Validators,
 } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
 
 @Component({
   selector: 'app-login',
@@ -28,16 +14,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  constructor(private formBuilder: FormBuilder) {}
 
-  passwordFormControl = new FormControl('', [Validators.required]);
-
-  matcher = new MyErrorStateMatcher();
-
-  constructor() {}
+  formLogin = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+  });
 
   ngOnInit(): void {}
+
+  handleSubmit() {
+    console.log(this.formLogin.value);
+  }
 }
