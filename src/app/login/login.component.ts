@@ -7,6 +7,7 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,10 @@ import {
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   formLogin = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -25,5 +29,6 @@ export class LoginComponent implements OnInit {
 
   handleSubmit() {
     console.log(this.formLogin.value);
+    this.authService.login(this.formLogin.value.password);
   }
 }

@@ -1,0 +1,45 @@
+.market-list-card {
+  display: block;
+  width: 90%;
+  height: 150px;
+  margin: 10px auto;
+  background: #cca;
+  box-shadow: 0 0 5px #444;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    box-shadow: 0 0 10px #444;
+    transform: scale(1.01);
+  }
+
+  h1 {
+    font-weight: 500;
+  }
+
+  ul {
+    list-style-type: none;
+
+    padding: 0 10px;
+  }
+
+  .icons-section {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}

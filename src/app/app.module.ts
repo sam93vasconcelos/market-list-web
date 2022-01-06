@@ -11,9 +11,17 @@ import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthGuardService } from './auth-guard-service.service';
+import { ListCardComponent } from './components/list-card/list-card.component';
+
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    ListCardComponent,
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -21,6 +29,7 @@ import { AuthGuardService } from './auth-guard-service.service';
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent],
