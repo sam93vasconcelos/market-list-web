@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Título da lista</h1>
+
+  <mat-selection-list #shoes class="list-container">
+    <mat-list-option *ngFor="let shoe of typesOfShoes">
+      {{ shoe }}
+    </mat-list-option>
+  </mat-selection-list>
+</div>

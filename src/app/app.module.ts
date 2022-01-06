@@ -14,6 +14,8 @@ import { AuthGuardService } from './auth-guard-service.service';
 import { ListCardComponent } from './components/list-card/list-card.component';
 
 import { MatIconModule } from '@angular/material/icon';
+import { ShowListComponent } from './lists/show-list/show-list.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
     HomeComponent,
     LoginComponent,
     ListCardComponent,
+    ShowListComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatListModule,
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent],
