@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./show-list.component.scss'],
 })
 export class ShowListComponent implements OnInit {
-  typesOfShoes: string[] = [
+  items: string[] = [
     'Pão x 5',
     'Ovo x 12',
     'Salsichinha x 1',
@@ -18,4 +18,8 @@ export class ShowListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  deleteItem(item: string) {
+    this.items = this.items.filter((i) => i !== item);
+  }
 }

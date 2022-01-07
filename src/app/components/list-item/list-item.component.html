@@ -1,0 +1,6 @@
+<span class="d-flex vertical-center">
+  <mat-icon (click)="handleDelete($event, item)" style="color: red">{{
+    confirmDelete ? "info" : "delete"
+  }}</mat-icon>
+  {{ item }}
+</span>

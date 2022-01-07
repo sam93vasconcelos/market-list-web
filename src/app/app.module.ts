@@ -16,6 +16,7 @@ import { ListCardComponent } from './components/list-card/list-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ShowListComponent } from './lists/show-list/show-list.component';
 import { MatListModule } from '@angular/material/list';
+import { ListItemComponent } from './components/list-item/list-item.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MatListModule } from '@angular/material/list';
     LoginComponent,
     ListCardComponent,
     ShowListComponent,
+    ListItemComponent,
   ],
   imports: [
     BrowserModule,
