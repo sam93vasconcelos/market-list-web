@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AddItemService } from 'src/app/add-item.service';
 
 @Component({
   selector: 'app-show-list',
@@ -6,19 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./show-list.component.scss'],
 })
 export class ShowListComponent implements OnInit {
-  items = [
-    { name: 'Pão x 5', bought: false },
-    { name: 'Ovo x 12', bought: false },
-    { name: 'Salsichinha x 1', bought: false },
-    { name: 'Refri x 2', bought: true },
-    { name: 'Batata x 4', bought: false },
-    { name: 'Tomate x 5', bought: false },
-  ];
+  // items = [
+  //   { name: '🍞 Pão x 5', bought: false },
+  //   { name: '🥚 Ovo x 12', bought: false },
+  //   { name: '🌭 Salsichinha x 1', bought: false },
+  //   { name: '🍹 Refri x 2', bought: true },
+  //   { name: '🥔 Batata x 4', bought: false },
+  //   { name: '🍅 Tomate x 5', bought: false },
+  // ];
+
+  items = JSON.parse(localStorage.getItem('items')) || [];
 
   itemsBought = this.items.filter((item) => item.bought);
   itemsUnbought = this.items.filter((item) => !item.bought);
 
-  constructor() {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private addItemService: AddItemService
+  ) {}
+
+  itemsForm = this.formBuilder.group({
+    name: [''],
+  });
 
   ngOnInit(): void {}
 
@@ -30,5 +41,9 @@ export class ShowListComponent implements OnInit {
   updateNumbers() {
     this.itemsBought = this.items.filter((item) => item.bought);
     this.itemsUnbought = this.items.filter((item) => !item.bought);
+  }
+
+  handleSubmit() {
+    this.addItemService.handle(this.itemsForm.get('name').value);
   }
 }

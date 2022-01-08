@@ -1,6 +1,26 @@
 <div class="container">
   <h1>Título da lista</h1>
 
+  <form (submit)="handleSubmit()" #addItemForm [formGroup]="itemsForm">
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        name="name"
+        formControlName="name"
+        placeholder="Novo item"
+        #itemNameInput
+      />
+    </mat-form-field>
+    <button
+      mat-button
+      type="submit"
+      [disabled]="itemsForm.get('name').value.length < 3"
+    >
+      <mat-icon> add </mat-icon>
+    </button>
+  </form>
+
   <button mat-raised-button class="ma-1" color="warn" routerLink="/">
     <mat-icon>keyboard_return</mat-icon>
     Voltar
