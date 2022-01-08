@@ -1,0 +1,11 @@
+div {
+  display: flex;
+
+  .mat-checkbox-checked {
+    text-decoration: line-through;
+  }
+
+  .mat-icon {
+    margin-right: 10px;
+  }
+}

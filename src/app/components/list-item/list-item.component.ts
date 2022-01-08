@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ListItemComponent implements OnInit {
   @Input() item;
   @Output() deleteItemEvent = new EventEmitter<string>();
+  @Output() changeItemEvent = new EventEmitter<boolean>();
 
   confirmDelete = false;
 
@@ -28,5 +29,10 @@ export class ListItemComponent implements OnInit {
     setTimeout(() => {
       this.confirmDelete = false;
     }, 2000);
+  }
+
+  handleChange(state: boolean) {
+    this.item.bought = state;
+    this.changeItemEvent.emit(state);
   }
 }

@@ -6,12 +6,55 @@
     Voltar
   </button>
 
-  <mat-selection-list #shoes class="list-container">
+  <div *ngIf="items.length === itemsBought.length" class="complete-badge">
+    😄 Lista completa
+  </div>
+
+  <!-- <mat-selection-list #shoes class="list-container">
     <mat-list-option *ngFor="let item of items">
       <app-list-item
         (deleteItemEvent)="deleteItem(item)"
         [item]="item"
       ></app-list-item>
     </mat-list-option>
-  </mat-selection-list>
+  </mat-selection-list> -->
+
+  <ul>
+    <li *ngFor="let item of items">
+      <app-list-item
+        (deleteItemEvent)="deleteItem(item.name)"
+        (changeItemEvent)="updateNumbers()"
+        [item]="item"
+      ></app-list-item>
+    </li>
+  </ul>
+
+  <div class="icons-section">
+    <span class="item-qty" title="Total de itens">
+      <mat-icon aria-hidden="false" aria-label="Total de itens">
+        list
+      </mat-icon>
+      {{ items.length }}
+    </span>
+    <span class="item-bought" title="Itens comprados">
+      <mat-icon
+        style="color: green"
+        aria-hidden="false"
+        aria-label="Itens comprados"
+      >
+        check_circle
+      </mat-icon>
+      {{ itemsBought.length }}
+    </span>
+    <span class="item-unbought" title="Itens por comprar">
+      <mat-icon
+        style="color: red"
+        aria-hidden="false"
+        aria-label="Itens por comprar"
+      >
+        cancel
+      </mat-icon>
+      {{ itemsUnbought.length }}
+    </span>
+  </div>
 </div>

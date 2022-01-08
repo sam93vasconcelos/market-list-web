@@ -14,6 +14,7 @@ import { AuthGuardService } from './auth-guard-service.service';
 import { ListCardComponent } from './components/list-card/list-card.component';
 
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ShowListComponent } from './lists/show-list/show-list.component';
 import { MatListModule } from '@angular/material/list';
 import { ListItemComponent } from './components/list-item/list-item.component';
@@ -36,6 +37,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
     MatButtonModule,
     MatIconModule,
     MatListModule,
+    MatCheckboxModule,
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent],

@@ -1,6 +1,13 @@
-<span class="d-flex vertical-center">
-  <mat-icon (click)="handleDelete($event, item)" style="color: red">{{
+<div>
+  <mat-icon (click)="handleDelete($event, item.name)" style="color: red">{{
     confirmDelete ? "info" : "delete"
   }}</mat-icon>
-  {{ item }}
-</span>
+
+  <mat-checkbox
+    #checkBought
+    [checked]="item.bought"
+    (change)="handleChange(checkBought.checked)"
+  >
+    {{ item.name }}
+  </mat-checkbox>
+</div>

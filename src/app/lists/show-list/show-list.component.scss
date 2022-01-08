@@ -2,6 +2,32 @@ mat-list-option[aria-selected="true"] {
   text-decoration: line-through;
 }
 
-.list-container {
+.complete-badge {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 18px;
+}
+
+.icons-section {
+  display: flex;
+  justify-content: space-around;
+
+  span {
+    display: inherit;
+    gap: 5px;
+    align-items: center;
+  }
+  margin-top: 20px;
+}
+
+ul {
   background: #dda;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+
+  li {
+    display: block;
+  }
 }
