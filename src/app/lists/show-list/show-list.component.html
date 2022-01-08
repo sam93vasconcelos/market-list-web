@@ -1,5 +1,12 @@
 <div class="container">
-  <h1>Título da lista</h1>
+  <form [formGroup]="titleForm">
+    <input
+      (blur)="handleUpdateTitle()"
+      value="Título da lista"
+      class="input-title-editor"
+      formControlName="title"
+    />
+  </form>
 
   <form (submit)="handleSubmit()" #addItemForm [formGroup]="itemsForm">
     <mat-form-field>

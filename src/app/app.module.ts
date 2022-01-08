@@ -18,6 +18,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ShowListComponent } from './lists/show-list/show-list.component';
 import { MatListModule } from '@angular/material/list';
 import { ListItemComponent } from './components/list-item/list-item.component';
+import { CreateListComponent } from './lists/create-list/create-list.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
     ListCardComponent,
     ShowListComponent,
     ListItemComponent,
+    CreateListComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
     MatIconModule,
     MatListModule,
     MatCheckboxModule,
+    MatDialogModule,
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent],

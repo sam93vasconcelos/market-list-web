@@ -31,3 +31,15 @@ ul {
     display: block;
   }
 }
+
+.input-title-editor {
+  width: auto;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}

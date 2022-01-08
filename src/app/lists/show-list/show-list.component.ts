@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { AddItemService } from 'src/app/add-item.service';
 
 @Component({
@@ -31,6 +36,8 @@ export class ShowListComponent implements OnInit {
     name: [''],
   });
 
+  titleForm = this.formBuilder.group({ title: 'Título da lista' });
+
   ngOnInit(): void {}
 
   deleteItem(item: string) {
@@ -45,5 +52,9 @@ export class ShowListComponent implements OnInit {
 
   handleSubmit() {
     this.addItemService.handle(this.itemsForm.get('name').value);
+  }
+
+  handleUpdateTitle() {
+    console.log(this.titleForm.value);
   }
 }

@@ -1,7 +1,9 @@
 <div>
-  <mat-icon (click)="handleDelete($event, item.name)" style="color: red">{{
-    confirmDelete ? "info" : "delete"
-  }}</mat-icon>
+  <mat-icon
+    (click)="handleDelete($event, item.name)"
+    style="color: red; cursor: pointer"
+    >{{ confirmDelete ? "info" : "delete" }}</mat-icon
+  >
 
   <mat-checkbox
     #checkBought

@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Criar nova lista</h1>
+
+  <form (submit)="saveList()" [formGroup]="createListForm">
+    <mat-form-field class="full-width">
+      <mat-label>Título da lista</mat-label>
+      <input
+        name="title"
+        matInput
+        formControlName="title"
+        placeholder="Compras do mercado"
+      />
+      <mat-error *ngIf="createListForm.get('title').hasError('required')">
+        Preencha o título
+      </mat-error>
+      <mat-error *ngIf="createListForm.get('title').hasError('minlength')">
+        Mínimo de 3 letras
+      </mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      type="submit"
+      [disabled]="!createListForm.valid"
+      color="primary"
+      class="ma-1"
+    >
+      Salvar
+    </button>
+    <button mat-raised-button color="warn" class="ma-1" routerLink="/">
+      Cancelar
+    </button>
+  </form>
+</div>
