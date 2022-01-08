@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Item } from '../models/Item';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +7,12 @@ import { Injectable } from '@angular/core';
 export class DeleteItemService {
   constructor() {}
 
-  handle() {
-    //
+  handle(item: string) {
+    const currentItems: Item[] =
+      JSON.parse(localStorage.getItem('items')) || [];
+    const itemsUpdated = currentItems.filter(
+      (currentItem) => currentItem.name !== item
+    );
+    localStorage.setItem('items', JSON.stringify(itemsUpdated));
   }
 }

@@ -2,7 +2,9 @@
   <h1 class="list-card-title">{{ listTitle }}</h1>
 
   <ul *ngFor="let item of listItems">
-    <li>{{ item.name }} x {{ item.qty }}</li>
+    <li [class]="item.done ? 'line-through' : ''">
+      {{ item.name }} x {{ item.qty }}
+    </li>
     <li>
       <i *ngIf="listItems.length > 3">mais...</i>
     </li>

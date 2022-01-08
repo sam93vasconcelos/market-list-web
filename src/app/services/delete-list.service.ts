@@ -7,6 +7,6 @@ export class DeleteListService {
   constructor() {}
 
   handle() {
-    //
+    alert('Service del');
   }
 }

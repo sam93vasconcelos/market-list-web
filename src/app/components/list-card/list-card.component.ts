@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Item } from 'src/app/models/Item';
+import { DeleteListService } from '../../services/delete-list.service';
 
 @Component({
   selector: 'app-list-card',
@@ -14,7 +15,7 @@ export class ListCardComponent implements OnInit {
   doneItems: number;
   undonelItems: number;
 
-  constructor() {}
+  constructor(private deleteListService: DeleteListService) {}
 
   ngOnInit(): void {
     this.totalItems = this.listItems.length;
@@ -24,6 +25,6 @@ export class ListCardComponent implements OnInit {
 
   handleDelete(event: MouseEvent) {
     event.stopPropagation();
-    alert('Delete');
+    this.deleteListService.handle(/** listId */);
   }
 }

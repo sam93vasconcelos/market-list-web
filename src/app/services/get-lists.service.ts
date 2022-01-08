@@ -11,7 +11,13 @@ export class GetListsService {
 
   private _getLists() {
     this._list = [
-      { title: 'test', items: [{ name: 'Pão', done: false, qty: 5 }] },
+      {
+        title: 'test',
+        items: [
+          { name: 'Pão', done: false, qty: 5 },
+          { name: 'Salsichinha', done: true, qty: 1 },
+        ],
+      },
     ];
   }
 

@@ -22,7 +22,7 @@
     <button
       mat-button
       type="submit"
-      [disabled]="itemsForm.get('name').value.length < 3"
+      [disabled]="itemsForm.get('name')?.value?.length < 3"
     >
       <mat-icon> add </mat-icon>
     </button>
@@ -33,7 +33,7 @@
     Voltar
   </button>
 
-  <div *ngIf="items.length === itemsBought.length" class="complete-badge">
+  <div *ngIf="items.length === itemsDone.length" class="complete-badge">
     😄 Lista completa
   </div>
 
@@ -71,7 +71,7 @@
       >
         check_circle
       </mat-icon>
-      {{ itemsBought.length }}
+      {{ itemsDone.length }}
     </span>
     <span class="item-unbought" title="Itens por comprar">
       <mat-icon
@@ -81,7 +81,7 @@
       >
         cancel
       </mat-icon>
-      {{ itemsUnbought.length }}
+      {{ itemsUndone.length }}
     </span>
   </div>
 </div>

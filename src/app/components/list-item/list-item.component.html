@@ -7,7 +7,7 @@
 
   <mat-checkbox
     #checkBought
-    [checked]="item.bought"
+    [checked]="item.done"
     (change)="handleChange(checkBought.checked)"
   >
     {{ item.name }}

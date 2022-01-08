@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class UpdateListService {
   constructor() {}
 
-  handle() {
-    //
+  handle(newTitle: string) {
+    alert(newTitle);
   }
 }

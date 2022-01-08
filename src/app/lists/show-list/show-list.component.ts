@@ -6,6 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { AddItemService } from 'src/app/add-item.service';
+import { UpdateListService } from '../../services/update-list.service';
+import { DeleteItemService } from '../../services/delete-item.service';
+import { Item } from 'src/app/models/Item';
 
 @Component({
   selector: 'app-show-list',
@@ -13,23 +16,16 @@ import { AddItemService } from 'src/app/add-item.service';
   styleUrls: ['./show-list.component.scss'],
 })
 export class ShowListComponent implements OnInit {
-  // items = [
-  //   { name: '🍞 Pão x 5', bought: false },
-  //   { name: '🥚 Ovo x 12', bought: false },
-  //   { name: '🌭 Salsichinha x 1', bought: false },
-  //   { name: '🍹 Refri x 2', bought: true },
-  //   { name: '🥔 Batata x 4', bought: false },
-  //   { name: '🍅 Tomate x 5', bought: false },
-  // ];
+  items: Item[] = JSON.parse(localStorage.getItem('items')) || [];
 
-  items = JSON.parse(localStorage.getItem('items')) || [];
-
-  itemsBought = this.items.filter((item) => item.bought);
-  itemsUnbought = this.items.filter((item) => !item.bought);
+  itemsDone = this.items.filter((item) => item.done);
+  itemsUndone = this.items.filter((item) => !item.done);
 
   constructor(
     private formBuilder: FormBuilder,
-    private addItemService: AddItemService
+    private addItemService: AddItemService,
+    private updateListService: UpdateListService,
+    private deleteItemService: DeleteItemService
   ) {}
 
   itemsForm = this.formBuilder.group({
@@ -41,20 +37,29 @@ export class ShowListComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteItem(item: string) {
+    this.deleteItemService.handle(item);
     this.items = this.items.filter((i) => i.name !== item);
     this.updateNumbers();
   }
 
   updateNumbers() {
-    this.itemsBought = this.items.filter((item) => item.bought);
-    this.itemsUnbought = this.items.filter((item) => !item.bought);
+    this.itemsDone = this.items.filter((item) => item.done);
+    this.itemsUndone = this.items.filter((item) => !item.done);
   }
 
   handleSubmit() {
-    this.addItemService.handle(this.itemsForm.get('name').value);
+    const newItem = this.addItemService.handle(
+      this.itemsForm.get('name').value
+    );
+
+    if (newItem) {
+      this.items = [...this.items, newItem];
+    }
+
+    this.itemsForm.reset();
   }
 
   handleUpdateTitle() {
-    console.log(this.titleForm.value);
+    this.updateListService.handle(this.titleForm.get('title').value);
   }
 }

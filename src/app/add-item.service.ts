@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Item } from './models/Item';
 
 @Injectable({
   providedIn: 'root',
@@ -6,13 +7,16 @@ import { Injectable } from '@angular/core';
 export class AddItemService {
   constructor() {}
 
-  handle(item: string) {
+  handle(item: string): Item | null {
     const currentItems = JSON.parse(localStorage.getItem('items')) || [];
     if (currentItems.some((currentItem) => currentItem.name === item)) {
-      return;
+      return null;
     }
 
-    const updatedItems = [...currentItems, { name: item, bought: false }];
+    const newItem: Item = { name: item, done: false, qty: 1 };
+    const updatedItems = [...currentItems, newItem];
     localStorage.setItem('items', JSON.stringify(updatedItems));
+
+    return newItem;
   }
 }

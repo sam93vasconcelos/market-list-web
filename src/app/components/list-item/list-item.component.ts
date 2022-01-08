@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Item } from 'src/app/models/Item';
+import { HandleItemDoneService } from '../../services/handle-item-done.service';
 
 @Component({
   selector: 'app-list-item',
@@ -6,13 +8,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./list-item.component.scss'],
 })
 export class ListItemComponent implements OnInit {
-  @Input() item;
+  @Input() item: Item;
   @Output() deleteItemEvent = new EventEmitter<string>();
   @Output() changeItemEvent = new EventEmitter<boolean>();
 
   confirmDelete = false;
 
-  constructor() {}
+  constructor(private handleItemDoneService: HandleItemDoneService) {}
 
   ngOnInit(): void {}
 
@@ -32,7 +34,8 @@ export class ListItemComponent implements OnInit {
   }
 
   handleChange(state: boolean) {
-    this.item.bought = state;
+    this.handleItemDoneService.handle(this.item.name, state);
+    this.item.done = state;
     this.changeItemEvent.emit(state);
   }
 }
