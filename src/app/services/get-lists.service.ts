@@ -1,28 +1,32 @@
 import { Injectable } from '@angular/core';
 import { List } from '../models/List';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetListsService {
-  constructor() {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
+
+  headerOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    }),
+  };
 
   private _list: List[];
 
-  private _getLists() {
-    this._list = [
-      {
-        title: 'test',
-        items: [
-          { name: 'Pão', done: false, qty: 5 },
-          { name: 'Salsichinha', done: true, qty: 1 },
-        ],
-      },
-    ];
+  getLists(): Observable<List[]> {
+    return this.http.get<List[]>(
+      'http://localhost:8000/api/market-lists',
+      this.headerOptions
+    );
   }
 
   get(): List[] {
-    this._getLists();
+    this.getLists();
     return this._list;
   }
 }

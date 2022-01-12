@@ -8,9 +8,19 @@ import { GetListsService } from '../services/get-lists.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  ngOnInit(): void {}
-
   constructor(private getListsService: GetListsService) {}
 
-  lists: List[] = this.getListsService.get();
+  ngOnInit(): void {
+    this.getLists();
+  }
+
+  lists: List[] = [];
+
+  getLists() {
+    this.getListsService.getLists().subscribe((response) => {
+      console.log(response);
+
+      this.lists = response;
+    });
+  }
 }

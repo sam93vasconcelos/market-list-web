@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { CreateListService } from '../../services/create-list.service';
 
 @Component({
   selector: 'app-create-list',
@@ -7,7 +8,10 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./create-list.component.scss'],
 })
 export class CreateListComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private createListService: CreateListService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -16,6 +20,6 @@ export class CreateListComponent implements OnInit {
   });
 
   saveList() {
-    console.log(this.createListForm.value);
+    this.createListService.handle(this.createListForm.get('title').value);
   }
 }

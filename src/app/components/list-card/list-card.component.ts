@@ -18,9 +18,9 @@ export class ListCardComponent implements OnInit {
   constructor(private deleteListService: DeleteListService) {}
 
   ngOnInit(): void {
-    this.totalItems = this.listItems.length;
-    this.doneItems = this.listItems.filter((item) => item.done).length;
-    this.undonelItems = this.listItems.filter((item) => !item.done).length;
+    this.totalItems = this.listItems?.length;
+    this.doneItems = this.listItems?.filter((item) => item.done).length;
+    this.undonelItems = this.listItems?.filter((item) => !item.done).length;
   }
 
   handleDelete(event: MouseEvent) {

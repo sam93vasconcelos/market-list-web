@@ -20,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { CreateListComponent } from './lists/create-list/create-list.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
