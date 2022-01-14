@@ -1,4 +1,4 @@
-<div routerLink="/lista/1" class="market-list-card">
+<div [routerLink]="'/lista/' + listId" class="market-list-card">
   <h1 class="list-card-title">{{ listTitle }}</h1>
 
   <ul *ngFor="let item of listItems">
@@ -15,7 +15,7 @@
       <mat-icon aria-hidden="false" aria-label="Total de itens">
         list
       </mat-icon>
-      {{ totalItems }}
+      {{ totalItems || 0 }}
     </span>
     <span class="item-bought" title="Itens comprados">
       <mat-icon
@@ -25,7 +25,7 @@
       >
         check_circle
       </mat-icon>
-      {{ doneItems }}
+      {{ doneItems || 0 }}
     </span>
     <span class="item-unbought" title="Itens por comprar">
       <mat-icon
@@ -35,7 +35,7 @@
       >
         cancel
       </mat-icon>
-      {{ undonelItems }}
+      {{ undonelItems || 0 }}
     </span>
   </div>
 

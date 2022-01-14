@@ -18,9 +18,11 @@ export class HomeComponent implements OnInit {
 
   getLists() {
     this.getListsService.getLists().subscribe((response) => {
-      console.log(response);
-
       this.lists = response;
     });
+  }
+
+  handleDelete(id: number) {
+    this.lists = this.lists.filter((list) => list.id !== id);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CreateListService } from '../../services/create-list.service';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-create-list',
@@ -20,6 +21,16 @@ export class CreateListComponent implements OnInit {
   });
 
   saveList() {
-    this.createListService.handle(this.createListForm.get('title').value);
+    this.createListService
+      .handle(this.createListForm.get('title').value)
+      .pipe(
+        catchError((err) => {
+          return throwError(() => console.log(err));
+        })
+      )
+      .subscribe(() => {
+        this.createListForm.reset();
+        this.createListForm.get('title')?.setErrors(null);
+      });
   }
 }

@@ -16,6 +16,8 @@
   <app-list-card
     *ngFor="let list of lists"
     [listTitle]="list.title"
-    [listItems]="list.items"
+    [listItems]="list.list_items"
+    [listId]="list.id"
+    (deleteListEvent)="handleDelete($event)"
   ></app-list-card>
 </div>

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
 import { Item } from 'src/app/models/Item';
 import { DeleteListService } from '../../services/delete-list.service';
 
@@ -8,12 +9,16 @@ import { DeleteListService } from '../../services/delete-list.service';
   styleUrls: ['./list-card.component.scss'],
 })
 export class ListCardComponent implements OnInit {
+  @Input() listId: number;
   @Input() listTitle: string;
   @Input() listItems: Item[];
+  @Output() deleteListEvent = new EventEmitter<number>();
 
   totalItems: number;
   doneItems: number;
   undonelItems: number;
+
+  confirmDelete = false;
 
   constructor(private deleteListService: DeleteListService) {}
 
@@ -25,6 +30,25 @@ export class ListCardComponent implements OnInit {
 
   handleDelete(event: MouseEvent) {
     event.stopPropagation();
-    this.deleteListService.handle(/** listId */);
+
+    if (this.confirmDelete) {
+      this.deleteListService
+        .handle(this.listId)
+        .pipe(
+          catchError((err) => {
+            alert('Erro');
+            return throwError(() => console.log(err));
+          })
+        )
+        .subscribe(() => {
+          this.deleteListEvent.emit(this.listId);
+        });
+    }
+
+    this.confirmDelete = true;
+
+    setTimeout(() => {
+      this.confirmDelete = false;
+    }, 2000);
   }
 }
