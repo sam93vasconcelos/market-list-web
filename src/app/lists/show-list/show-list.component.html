@@ -49,7 +49,7 @@
   <ul>
     <li *ngFor="let item of items">
       <app-list-item
-        (deleteItemEvent)="deleteItem(item.name)"
+        (deleteItemEvent)="deleteItem(item)"
         (changeItemEvent)="updateNumbers()"
         [item]="item"
       ></app-list-item>

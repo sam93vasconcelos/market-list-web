@@ -1,22 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Item } from './models/Item';
+import { Observable } from 'rxjs';
+import { HttpServiceService } from './services/http-service.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AddItemService {
-  constructor() {}
+  constructor(private http: HttpServiceService) {}
 
-  handle(item: string): Item | null {
-    const currentItems = JSON.parse(localStorage.getItem('items')) || [];
-    if (currentItems.some((currentItem) => currentItem.name === item)) {
-      return null;
-    }
-
-    const newItem: Item = { name: item, done: false, qty: 1 };
-    const updatedItems = [...currentItems, newItem];
-    localStorage.setItem('items', JSON.stringify(updatedItems));
-
-    return newItem;
+  handle({
+    title,
+    market_list_id,
+    qty,
+  }: {
+    title: string;
+    market_list_id: number;
+    qty: number;
+  }): Observable<any> {
+    return this.http.post('api/list-items', {
+      name: title,
+      market_list_id,
+      qty,
+    });
   }
 }

@@ -13,6 +13,7 @@ import { GetListService } from '../../services/get-list.service';
 import { GetListsService } from 'src/app/services/get-lists.service';
 import { Route, Router, ActivatedRoute } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-show-list',
@@ -31,7 +32,8 @@ export class ShowListComponent implements OnInit {
     private updateListService: UpdateListService,
     private deleteItemService: DeleteItemService,
     private getListService: GetListService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toast: ToastrService
   ) {}
 
   itemsForm = this.formBuilder.group({
@@ -64,9 +66,11 @@ export class ShowListComponent implements OnInit {
       });
   }
 
-  deleteItem(item: string) {
-    this.deleteItemService.handle(item);
-    this.items = this.items.filter((i) => i.name !== item);
+  deleteItem(item: Item) {
+    this.deleteItemService.handle(item.id).subscribe(() => {
+      this.toast.success('Removido!');
+    });
+    this.items = this.items.filter((i) => i.name !== item.name);
     this.updateNumbers();
   }
 
@@ -76,13 +80,16 @@ export class ShowListComponent implements OnInit {
   }
 
   handleSubmit() {
-    const newItem = this.addItemService.handle(
-      this.itemsForm.get('name').value
-    );
-
-    if (newItem) {
-      this.items = [...this.items, newItem];
-    }
+    this.addItemService
+      .handle({
+        title: this.itemsForm.get('name').value,
+        market_list_id: this.listId,
+        qty: 1,
+      })
+      .subscribe((newItem) => {
+        this.items = [...this.items, newItem];
+        this.toast.success('Salvo!!');
+      });
 
     this.itemsForm.reset();
   }

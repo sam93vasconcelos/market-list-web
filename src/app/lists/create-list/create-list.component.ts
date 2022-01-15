@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { CreateListService } from '../../services/create-list.service';
 import { catchError, throwError } from 'rxjs';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-create-list',
   templateUrl: './create-list.component.html',
@@ -11,7 +13,8 @@ import { catchError, throwError } from 'rxjs';
 export class CreateListComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private createListService: CreateListService
+    private createListService: CreateListService,
+    private toast: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -31,6 +34,8 @@ export class CreateListComponent implements OnInit {
       .subscribe(() => {
         this.createListForm.reset();
         this.createListForm.get('title')?.setErrors(null);
+
+        this.toast.success('Salvo!');
       });
   }
 }

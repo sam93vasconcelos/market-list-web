@@ -22,6 +22,8 @@ import { CreateListComponent } from './lists/create-list/create-list.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatCheckboxModule,
     MatDialogModule,
+    ToastrModule.forRoot(),
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent],
