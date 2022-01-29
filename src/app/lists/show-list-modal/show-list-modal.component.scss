@@ -1,0 +1,26 @@
+.share-icon {
+  z-index: 10;
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.share-container {
+  position: absolute;
+  box-shadow: 0 0 5px;
+  width: 90%;
+  height: 400px;
+  top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  transition: 0.5s;
+}
+
+.show {
+  transform: translate(0);
+}
+
+.hide {
+  transform: translateX(-200%);
+}

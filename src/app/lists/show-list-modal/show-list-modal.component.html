@@ -1,0 +1,45 @@
+<mat-icon
+  *ngIf="!show"
+  class="share-icon"
+  title="Compartilhar"
+  (click)="toggleShare()"
+>
+  share
+</mat-icon>
+<mat-icon
+  *ngIf="show"
+  class="share-icon"
+  title="Cancelar"
+  (click)="toggleShare()"
+  style="color: red"
+>
+  cancel
+</mat-icon>
+
+<div [class]="show ? 'share-container show' : 'share-container hide'">
+  <h1>Compartilhar Lista</h1>
+
+  <form [formGroup]="shareForm" (submit)="handleShare()">
+    <mat-form-field class="full-width">
+      <mat-label>E-mail para compartilhar</mat-label>
+      <input
+        matInput
+        name="email"
+        formControlName="email"
+        placeholder="teste@teste.com"
+        #emailInput
+      />
+    </mat-form-field>
+    <button class="ma-1" mat-raised-button color="primary" type="submit">
+      Compartilhar
+    </button>
+    <button
+      type="button"
+      mat-raised-button
+      color="warn"
+      (click)="toggleShare()"
+    >
+      Cancelar
+    </button>
+  </form>
+</div>

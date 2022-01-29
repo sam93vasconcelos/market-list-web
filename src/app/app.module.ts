@@ -15,10 +15,8 @@ import { ListCardComponent } from './components/list-card/list-card.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {
-  ShowListComponent,
-  ShowListModalComponent,
-} from './lists/show-list/show-list.component';
+import { ShowListComponent } from './lists/show-list/show-list.component';
+import { ShowListModalComponent } from './lists/show-list-modal/show-list-modal.component';
 import { MatListModule } from '@angular/material/list';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { CreateListComponent } from './lists/create-list/create-list.component';
@@ -34,11 +32,11 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     LoginComponent,
     ListCardComponent,
-    ShowListComponent,
     ListItemComponent,
     CreateListComponent,
     RegisterComponent,
     ShowListModalComponent,
+    ShowListComponent,
   ],
   imports: [
     BrowserModule,

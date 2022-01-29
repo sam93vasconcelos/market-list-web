@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { User } from './models/User.model';
 import { HttpServiceService } from './services/http-service.service';
 
@@ -60,7 +60,13 @@ export class AuthService {
    */
   login(data: LoginData): void {
     this.http
-      .post<LoginResponse>('http://localhost:8000/api/auth/login', data)
+      .post<LoginResponse>('http://192.168.7.114:8000/api/auth/login', data)
+      .pipe(
+        catchError((err) => {
+          alert(err.message);
+          return throwError(() => console.log(err));
+        })
+      )
       .subscribe((response) => {
         this._setToken(response.access_token);
         this._setUser(response.user);

@@ -8,8 +8,6 @@
     />
   </form>
 
-  <mat-icon title="Compartilhar" (click)="openDialog()">share</mat-icon>
-
   <form (submit)="handleSubmit()" #addItemForm [formGroup]="itemsForm">
     <mat-form-field class="full-width">
       <mat-label>Nome</mat-label>
@@ -48,7 +46,7 @@
   </button>
 
   <div *ngIf="items.length === itemsDone.length" class="complete-badge">
-    😄 Lista completa
+    😄 OK!
   </div>
 
   <!-- <mat-selection-list #shoes class="list-container">
@@ -97,5 +95,22 @@
       </mat-icon>
       {{ itemsUndone.length }}
     </span>
+  </div>
+
+  <hr />
+
+  <div *ngIf="listShares?.length > 0">
+    <h2>Compartilhamentos:</h2>
+
+    <app-show-list-modal></app-show-list-modal>
+
+    <ul class="list-shares">
+      <li *ngFor="let share of listShares">
+        <span (click)="handleRemoveShare(share.id)" style="color: red"
+          ><mat-icon>delete</mat-icon></span
+        >
+        {{ share.user.email }}
+      </li>
+    </ul>
   </div>
 </div>

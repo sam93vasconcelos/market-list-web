@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -15,6 +15,8 @@ import { Route, Router, ActivatedRoute } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
+import { RemoveShareService } from '../../services/remove-share.service';
+import { ShowListModalComponent } from '../show-list-modal/show-list-modal.component';
 
 @Component({
   selector: 'app-show-list',
@@ -35,16 +37,9 @@ export class ShowListComponent implements OnInit {
     private getListService: GetListService,
     private route: ActivatedRoute,
     private toast: ToastrService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private removeShareService: RemoveShareService
   ) {}
-
-  openDialog() {
-    const dialogRef = this.dialog.open(ShowListModalComponent);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
 
   itemsForm = this.formBuilder.group({
     name: [''],
@@ -56,6 +51,8 @@ export class ShowListComponent implements OnInit {
 
   listId: number = parseInt(this.route.snapshot.paramMap.get('id'));
 
+  listShares: any;
+
   ngOnInit(): void {
     this.getList();
   }
@@ -65,11 +62,16 @@ export class ShowListComponent implements OnInit {
       .handle(this.listId)
       .pipe(
         catchError((err) => {
+          alert(err.message);
           return throwError(() => console.log(err));
         })
       )
       .subscribe((res) => {
+        console.log(res);
+
         this.items = res.list_items;
+        this.listShares = res.shares;
+
         this.updateNumbers();
 
         this.listTitle = res.title;
@@ -119,18 +121,13 @@ export class ShowListComponent implements OnInit {
         console.log(res);
       });
   }
-}
 
-@Component({
-  selector: 'show-list-modal.component',
-  templateUrl: 'show-list-modal.component.html',
-})
-export class ShowListModalComponent {
-  constructor(private formBuilder: FormBuilder) {}
-
-  shareForm = this.formBuilder.group({
-    email: [''],
-  });
-
-  ngOnInit(): void {}
+  handleRemoveShare(id: number) {
+    this.removeShareService.handle(id).subscribe((res) => {
+      this.listShares = this.listShares.filter(
+        (listShare) => listShare.id !== id
+      );
+      alert('Removed');
+    });
+  }
 }

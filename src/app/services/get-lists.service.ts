@@ -20,7 +20,7 @@ export class GetListsService {
 
   getLists(): Observable<List[]> {
     return this.http.get<List[]>(
-      'http://localhost:8000/api/market-lists',
+      'http://192.168.7.114:8000/api/market-lists',
       this.headerOptions
     );
   }
