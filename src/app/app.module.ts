@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ToastrModule } from 'ngx-toastr';
     ShowListComponent,
     ListItemComponent,
     CreateListComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

@@ -20,12 +20,15 @@ export class ListCardComponent implements OnInit {
 
   confirmDelete = false;
 
+  ft3Items: Item[];
+
   constructor(private deleteListService: DeleteListService) {}
 
   ngOnInit(): void {
     this.totalItems = this.listItems?.length;
     this.doneItems = this.listItems?.filter((item) => item.done).length;
     this.undonelItems = this.listItems?.filter((item) => !item.done).length;
+    this.ft3Items = this.listItems.slice(0, 3);
   }
 
   handleDelete(event: MouseEvent) {

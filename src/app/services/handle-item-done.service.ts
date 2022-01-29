@@ -1,22 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Item } from '../models/Item';
+import { HttpServiceService } from './http-service.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HandleItemDoneService {
-  constructor() {}
+  constructor(private http: HttpServiceService) {}
 
-  handle(item: string, state: boolean) {
-    const currentItems: Item[] =
-      JSON.parse(localStorage.getItem('items')) || [];
-
-    const currentItem = currentItems.find((thisItem) => thisItem.name === item);
-
-    if (currentItem) {
-      currentItem.done = state;
+  handle(item: number | string, state: boolean) {
+    if (state) {
+      this.http
+        .patch(`api/list-items/${item}/set-as-done`, [])
+        .subscribe((res) => {
+          console.log(res);
+        });
+      return;
     }
 
-    localStorage.setItem('items', JSON.stringify(currentItems));
+    this.http
+      .patch(`api/list-items/${item}/set-as-undone`, [])
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }

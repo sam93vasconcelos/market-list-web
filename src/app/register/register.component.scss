@@ -1,0 +1,32 @@
+.login-container {
+  margin: 0 auto;
+  max-width: 90%;
+  width: 400px;
+  height: 450px;
+  background: linear-gradient(rgb(199, 201, 202), rgb(165, 167, 168));
+  box-shadow: 0 0 5px #222;
+  margin-top: 50vh;
+  transform: translateY(-200px);
+
+  border-radius: 10px;
+  padding: 20px;
+
+  h1 {
+    color: #444;
+    font-size: 36px;
+  }
+
+  .mt-2 {
+    margin-top: 20px;
+  }
+
+  .register,
+  .forget-password {
+    font-weight: 700;
+
+    a {
+      color: rgb(180, 58, 150);
+      text-decoration: none;
+    }
+  }
+}

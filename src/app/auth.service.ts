@@ -62,6 +62,18 @@ export class AuthService {
 
   /**
    *
+   * @param access_token string
+   * @param user User
+   */
+  signup(access_token: string, user: User): void {
+    this._setToken(access_token);
+    this._setUser(user);
+
+    this.router.navigate([this.redirectUrl]);
+  }
+
+  /**
+   *
    * returns the access_token of authenticated user
    */
   getToken(): string {

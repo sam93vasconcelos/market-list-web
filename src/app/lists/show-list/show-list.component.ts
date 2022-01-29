@@ -38,6 +38,7 @@ export class ShowListComponent implements OnInit {
 
   itemsForm = this.formBuilder.group({
     name: [''],
+    qty: [1],
   });
   listTitle: string = '';
 
@@ -75,8 +76,8 @@ export class ShowListComponent implements OnInit {
   }
 
   updateNumbers() {
-    this.itemsDone = this.items.filter((item) => item.done);
-    this.itemsUndone = this.items.filter((item) => !item.done);
+    this.itemsDone = this.items.filter((item) => item.done == true);
+    this.itemsUndone = this.items.filter((item) => item.done == false);
   }
 
   handleSubmit() {
@@ -84,14 +85,16 @@ export class ShowListComponent implements OnInit {
       .handle({
         title: this.itemsForm.get('name').value,
         market_list_id: this.listId,
-        qty: 1,
+        qty: this.itemsForm.get('qty').value,
+        done: false,
       })
       .subscribe((newItem) => {
         this.items = [...this.items, newItem];
         this.toast.success('Salvo!!');
+        this.updateNumbers();
       });
 
-    this.itemsForm.reset();
+    this.itemsForm.get('name').reset();
   }
 
   handleUpdateTitle() {

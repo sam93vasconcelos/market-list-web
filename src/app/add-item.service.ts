@@ -13,15 +13,18 @@ export class AddItemService {
     title,
     market_list_id,
     qty,
+    done,
   }: {
     title: string;
     market_list_id: number;
     qty: number;
+    done: boolean;
   }): Observable<any> {
     return this.http.post('api/list-items', {
       name: title,
       market_list_id,
       qty,
+      done,
     });
   }
 }

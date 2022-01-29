@@ -34,7 +34,7 @@ export class ListItemComponent implements OnInit {
   }
 
   handleChange(state: boolean) {
-    this.handleItemDoneService.handle(this.item.name, state);
+    this.handleItemDoneService.handle(this.item.id, state);
     this.item.done = state;
     this.changeItemEvent.emit(state);
   }

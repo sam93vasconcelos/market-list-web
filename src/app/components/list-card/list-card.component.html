@@ -1,8 +1,8 @@
 <div [routerLink]="'/lista/' + listId" class="market-list-card">
   <h1 class="list-card-title">{{ listTitle }}</h1>
 
-  <ul *ngFor="let item of listItems">
-    <li [class]="item.done ? 'line-through' : ''">
+  <ul>
+    <li *ngFor="let item of ft3Items" [class]="item.done ? 'line-through' : ''">
       {{ item.name }} x {{ item.qty }}
     </li>
     <li>

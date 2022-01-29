@@ -1,0 +1,69 @@
+<div class="login-container">
+  <h1>Nova Conta</h1>
+
+  <form [formGroup]="registerForm" (submit)="handleSubmit()">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input type="text" matInput formControlName="name" />
+      <mat-error *ngIf="registerForm.get('name')?.errors?.['required']">
+        Preencha o seu nome
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input type="email" matInput formControlName="email" />
+      <mat-error *ngIf="registerForm.get('email')?.errors?.['required']">
+        Preencha o e-mail
+      </mat-error>
+      <mat-error *ngIf="registerForm.get('email')?.errors?.['email']">
+        E-mail inválido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Senha</mat-label>
+      <input formControlName="password" type="password" matInput />
+      <mat-error *ngIf="registerForm.get('password').hasError('required')">
+        Preencha a senha
+      </mat-error>
+      <mat-error *ngIf="registerForm.get('password').hasError('minlength')">
+        A senha precisa ter no mínimo 8 caracteres
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Repetir Senha</mat-label>
+      <input formControlName="password_confirmation" type="password" matInput />
+      <mat-error
+        *ngIf="registerForm.get('password_confirmation').hasError('required')"
+      >
+        Preencha a confirmação de senha
+      </mat-error>
+    </mat-form-field>
+
+    <mat-error
+      *ngIf="
+        registerForm.get('password_confirmation').value !==
+        registerForm.get('password').value
+      "
+      >As senhas não são iguais</mat-error
+    >
+
+    <button
+      [disabled]="
+        !registerForm.valid ||
+        registerForm.get('password_confirmation').value !==
+          registerForm.get('password').value ||
+        creating
+      "
+      mat-raised-button
+      color="primary"
+      style="margin-top: 10px"
+      type="submit"
+    >
+      {{ creating ? "Criando..." : "Criar" }}
+    </button>
+
+    <p class="register mt-2">
+      Já tem uma conta? Faça login clicando <a routerLink="/login">aqui!</a>
+    </p>
+  </form>
+</div>

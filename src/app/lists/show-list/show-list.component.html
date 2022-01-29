@@ -9,7 +9,7 @@
   </form>
 
   <form (submit)="handleSubmit()" #addItemForm [formGroup]="itemsForm">
-    <mat-form-field>
+    <mat-form-field class="full-width">
       <mat-label>Nome</mat-label>
       <input
         matInput
@@ -17,6 +17,18 @@
         formControlName="name"
         placeholder="Novo item"
         #itemNameInput
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Qtd</mat-label>
+      <input
+        matInput
+        name="qty"
+        formControlName="qty"
+        placeholder="5"
+        #itemQtyInput
+        type="number"
+        min="1"
       />
     </mat-form-field>
     <button

@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { CreateListComponent } from './lists/create-list/create-list.component';
 import { ShowListComponent } from './lists/show-list/show-list.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuardService] },
@@ -19,6 +20,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'criar-conta', component: RegisterComponent },
 ];
 
 @NgModule({
