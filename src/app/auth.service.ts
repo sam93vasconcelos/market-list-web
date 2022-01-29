@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from './models/User.model';
+import { HttpServiceService } from './services/http-service.service';
 
 interface LoginData {
   email: string;
@@ -25,10 +26,20 @@ export class AuthService {
   ) {}
 
   private _setToken(access_token: string) {
+    if (!access_token) {
+      localStorage.removeItem('@market:token');
+      return;
+    }
+
     localStorage.setItem('@market:token', access_token);
   }
 
   private _setUser(user: User) {
+    if (!user) {
+      localStorage.removeItem('@market:user');
+      return;
+    }
+
     const userString = JSON.stringify(user);
     localStorage.setItem('@market:user', userString);
   }
@@ -48,8 +59,6 @@ export class AuthService {
    * @param data - email: string, password: string
    */
   login(data: LoginData): void {
-    const { email, password } = data;
-
     this.http
       .post<LoginResponse>('http://localhost:8000/api/auth/login', data)
       .subscribe((response) => {
@@ -58,6 +67,13 @@ export class AuthService {
 
         this.router.navigate([this.redirectUrl]);
       });
+  }
+
+  logout(): void {
+    this._setToken(null);
+    this._setUser(null);
+
+    this.router.navigate(['login']);
   }
 
   /**

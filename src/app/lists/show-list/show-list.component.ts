@@ -14,6 +14,7 @@ import { GetListsService } from 'src/app/services/get-lists.service';
 import { Route, Router, ActivatedRoute } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-show-list',
@@ -33,8 +34,17 @@ export class ShowListComponent implements OnInit {
     private deleteItemService: DeleteItemService,
     private getListService: GetListService,
     private route: ActivatedRoute,
-    private toast: ToastrService
+    private toast: ToastrService,
+    public dialog: MatDialog
   ) {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ShowListModalComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   itemsForm = this.formBuilder.group({
     name: [''],
@@ -109,4 +119,18 @@ export class ShowListComponent implements OnInit {
         console.log(res);
       });
   }
+}
+
+@Component({
+  selector: 'show-list-modal.component',
+  templateUrl: 'show-list-modal.component.html',
+})
+export class ShowListModalComponent {
+  constructor(private formBuilder: FormBuilder) {}
+
+  shareForm = this.formBuilder.group({
+    email: [''],
+  });
+
+  ngOnInit(): void {}
 }

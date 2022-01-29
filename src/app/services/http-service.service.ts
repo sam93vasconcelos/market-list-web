@@ -10,15 +10,17 @@ export class HttpServiceService {
   constructor(
     private httpClient: HttpClient,
     private authService: AuthService
-  ) {}
+  ) {
+    this._headerOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.authService.getToken()}`,
+      }),
+    };
+  }
 
   private _baseURL = 'http://localhost:8000/';
 
-  private _headerOptions = {
-    headers: new HttpHeaders({
-      Authorization: `Bearer ${this.authService.getToken()}`,
-    }),
-  };
+  private _headerOptions;
 
   get<T>(url: string): Observable<any> {
     return this.httpClient.get(this._baseURL + url, this._headerOptions);

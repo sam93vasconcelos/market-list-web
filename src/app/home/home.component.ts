@@ -22,6 +22,10 @@ export class HomeComponent implements OnInit {
 
   lists: List[] = [];
 
+  handleLogout() {
+    this.authService.logout();
+  }
+
   getLists() {
     this.getListsService.getLists().subscribe((response) => {
       this.lists = response;

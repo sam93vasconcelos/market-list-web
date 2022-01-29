@@ -1,0 +1,15 @@
+<h1>Compartilhar Lista</h1>
+
+<form [formGroup]="shareForm">
+  <mat-form-field class="full-width">
+    <mat-label>E-mail para compartilhar</mat-label>
+    <input
+      matInput
+      name="email"
+      formControlName="email"
+      placeholder="teste@teste.com"
+      #emailInput
+    />
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Compartilhar</button>
+</form>
