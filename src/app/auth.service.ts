@@ -104,9 +104,17 @@ export class AuthService {
 
   /**
    *
-   * returns the name authenticated user
+   * returns the name of authenticated user
    */
   getUserName(): string {
     return this._getUser().name;
+  }
+
+  /**
+   *
+   * returns the id of authenticated user
+   */
+  getUserId(): number {
+    return this._getUser().id;
   }
 }

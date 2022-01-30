@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="titleForm">
+  <form [formGroup]="titleForm" *ngIf="listOwner?.id === loggedUser">
     <input
       (blur)="handleUpdateTitle()"
       value="Título da lista"
@@ -7,6 +7,8 @@
       formControlName="title"
     />
   </form>
+
+  <h1 *ngIf="listOwner?.id !== loggedUser">{{ listTitle }}</h1>
 
   <form (submit)="handleSubmit()" #addItemForm [formGroup]="itemsForm">
     <mat-form-field class="full-width">
@@ -99,18 +101,23 @@
 
   <hr />
 
-  <div *ngIf="listShares?.length > 0">
-    <h2>Compartilhamentos:</h2>
+  <div *ngIf="listOwner?.id === loggedUser">
+    <app-show-list-modal
+      (shareSaved)="handleShareSaved($event)"
+      [listId]="listId"
+    ></app-show-list-modal>
 
-    <app-show-list-modal></app-show-list-modal>
+    <div *ngIf="listShares?.length > 0">
+      <h2>Compartilhamentos:</h2>
 
-    <ul class="list-shares">
-      <li *ngFor="let share of listShares">
-        <span (click)="handleRemoveShare(share.id)" style="color: red"
-          ><mat-icon>delete</mat-icon></span
-        >
-        {{ share.user.email }}
-      </li>
-    </ul>
+      <ul class="list-shares">
+        <li *ngFor="let share of listShares">
+          <span (click)="handleRemoveShare(share.id)" style="color: red"
+            ><mat-icon>delete</mat-icon></span
+          >
+          {{ share.user.email }}
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

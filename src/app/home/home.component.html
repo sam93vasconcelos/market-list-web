@@ -25,4 +25,12 @@
   <hr />
 
   <h2>Listas compartilhadas comigo:</h2>
+
+  <p
+    [routerLink]="'lista/' + list.market_list.id"
+    style="font-size: 16px"
+    *ngFor="let list of sharedLists"
+  >
+    {{ list.market_list.title }} | {{ list.user.name }}
+  </p>
 </div>

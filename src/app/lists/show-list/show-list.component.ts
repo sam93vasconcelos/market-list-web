@@ -17,6 +17,8 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { RemoveShareService } from '../../services/remove-share.service';
 import { ShowListModalComponent } from '../show-list-modal/show-list-modal.component';
+import { User } from '../../models/User.model';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-show-list',
@@ -38,13 +40,18 @@ export class ShowListComponent implements OnInit {
     private route: ActivatedRoute,
     private toast: ToastrService,
     public dialog: MatDialog,
-    private removeShareService: RemoveShareService
+    private removeShareService: RemoveShareService,
+    private authService: AuthService
   ) {}
 
   itemsForm = this.formBuilder.group({
     name: [''],
     qty: [1],
   });
+
+  listOwner: User;
+  loggedUser: number = this.authService.getUserId();
+
   listTitle: string = '';
 
   titleForm = this.formBuilder.group({ title: 'Carregando...' });
@@ -71,6 +78,7 @@ export class ShowListComponent implements OnInit {
 
         this.items = res.list_items;
         this.listShares = res.shares;
+        this.listOwner = res.user;
 
         this.updateNumbers();
 
@@ -127,7 +135,12 @@ export class ShowListComponent implements OnInit {
       this.listShares = this.listShares.filter(
         (listShare) => listShare.id !== id
       );
-      alert('Removed');
     });
+  }
+
+  handleShareSaved(share) {
+    console.log(share);
+
+    this.listShares = [...this.listShares, share];
   }
 }
