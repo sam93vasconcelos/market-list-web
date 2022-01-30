@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpServiceService } from './http-service.service';
+import { HttpService } from './http-service';
 import { Observable } from 'rxjs';
 import { List } from '../models/List';
 
@@ -7,7 +7,7 @@ import { List } from '../models/List';
   providedIn: 'root',
 })
 export class GetSharedListsService {
-  constructor(private http: HttpServiceService) {}
+  constructor(private http: HttpService) {}
 
   handle(): Observable<List[]> {
     return this.http.get<List[]>('api/shares');

@@ -43,6 +43,7 @@
     (click)="handleDelete($event)"
     title="Apagar lista"
     class="delete-button-card"
-    >delete</mat-icon
   >
+    {{ confirmDelete ? "info" : "delete" }}
+  </mat-icon>
 </div>

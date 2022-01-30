@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpServiceService } from './http-service.service';
+import { HttpService } from './http-service';
 import { Observable } from 'rxjs';
 import { List } from '../models/List';
 
@@ -7,7 +7,7 @@ import { List } from '../models/List';
   providedIn: 'root',
 })
 export class GetListService {
-  constructor(private httpService: HttpServiceService) {}
+  constructor(private httpService: HttpService) {}
 
   handle(id: number): Observable<List> {
     return this.httpService.get<List>(`api/market-lists/${id}`);

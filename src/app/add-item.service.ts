@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Item } from './models/Item';
 import { Observable } from 'rxjs';
-import { HttpServiceService } from './services/http-service.service';
+import { HttpService } from './services/http-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AddItemService {
-  constructor(private http: HttpServiceService) {}
+  constructor(private http: HttpService) {}
 
   handle({
     title,

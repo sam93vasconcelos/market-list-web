@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth.service';
-import { HttpServiceService } from './http-service.service';
+import { HttpService } from './http-service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class CreateListService {
   constructor(
-    private httpService: HttpServiceService,
+    private httpService: HttpService,
     private authService: AuthService
   ) {}
 

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class HttpServiceService {
+export class HttpService {
   constructor(
     private httpClient: HttpClient,
     private authService: AuthService
@@ -18,7 +18,7 @@ export class HttpServiceService {
     };
   }
 
-  private _baseURL = 'http://192.168.7.114:8000/';
+  private _baseURL = 'http://localhost:8000/';
 
   private _headerOptions;
 

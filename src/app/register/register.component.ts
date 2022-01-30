@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { User } from '../models/User.model';
-import { HttpServiceService } from '../services/http-service.service';
+import { HttpService } from '../services/http-service';
 
 interface signupResponse {
   access_token: string;
@@ -17,7 +17,7 @@ interface signupResponse {
 export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpServiceService,
+    private http: HttpService,
     private authService: AuthService
   ) {}
 

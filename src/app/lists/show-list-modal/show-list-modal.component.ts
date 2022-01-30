@@ -7,7 +7,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { HttpServiceService } from 'src/app/services/http-service.service';
+import { HttpService } from 'src/app/services/http-service';
 import { CreateShareService } from 'src/app/services/create-share.service';
 import { catchError, throwError } from 'rxjs';
 
@@ -22,7 +22,7 @@ export class ShowListModalComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpServiceService,
+    private http: HttpService,
     private createShareService: CreateShareService
   ) {}
   ngOnInit(): void {}

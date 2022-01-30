@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
 import { User } from './models/User.model';
-import { HttpServiceService } from './services/http-service.service';
+import { HttpService } from './services/http-service';
 
 interface LoginData {
   email: string;
@@ -60,7 +60,7 @@ export class AuthService {
    */
   login(data: LoginData): void {
     this.http
-      .post<LoginResponse>('http://192.168.7.114:8000/api/auth/login', data)
+      .post<LoginResponse>('http://localhost:8000/api/auth/login', data)
       .pipe(
         catchError((err) => {
           alert(err.message);

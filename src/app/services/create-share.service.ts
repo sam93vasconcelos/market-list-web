@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpServiceService } from './http-service.service';
+import { HttpService } from './http-service';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CreateShareService {
-  constructor(private http: HttpServiceService) {}
+  constructor(private http: HttpService) {}
 
   handle(user_email: string, market_list_id: number): Observable<any> {
     return this.http.post('api/shares', {
